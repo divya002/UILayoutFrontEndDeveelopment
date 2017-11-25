@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="public/w3.css">
+<script src="public/angular.min.js"></script>
+<body style="background-color:#B5CDB8">
+<div class="w3-round-xxlarge" ng-app="myApp" ng-controller="TableAccessCtrl">
+<h1><center w3-blue>LookUp Generator</center></h1> 
+    <br>
+    <br>
+<center>
+<table class="w3-table-all w3-round-large">
+<tr class="w3-pale-green">
+<th>LookupId</th>
+<th>LookupType</th>
+<th>LookupName</th>
+<th>LookUpValue</th>
+<th>LookupDescription</th>
+</tr>
+<tr class="w3-pale-blue" ng-repeat="x in tableContent">
+<td>{{ x.lookupId }}</td>
+<td>{{ x.lookupType }}</td>
+<td>{{ x.lookupName }}</td>
+<td>
+<!--//<span ng-hide="x.editing" ng-dblclick="editItem(x)">{{x.lookUpValue}}</span>-->
+<input class="w3-round-large" type="text"  ng-model="x.lookUpValue" autofocus />
+
+</td>
+<td>{{ x.cars[1] }}</td>
+</tr>
+</table>
+     <span>{{message}}</span>
+</center>
+
+    <br>
+   
+<center><button class="w3-pale-red w3-round-large" ng-click="resubmit()">Submit!</button></center>
+    
+</div>
+<script>
+var app = angular.module('myApp', []);   
+app.controller('TableAccessCtrl', function ($scope, $http) {
+$http.get('JSON/data.json').then(function(response) {
+        $scope.tableContent= response.data;
+     console.log($scope.tableContent[0].cars[2]);
+});
+
+$scope.editItem = function (x) {
+        x.editing = true;
+    };
+
+$scope.doneEditing = function (x) {
+        x.editing = false;
+    };
+
+$scope.resubmit= function() {   
+    
+var tempItemList = [];
+angular.forEach($scope.tableContent,function(item,index){
+tempItemList.push(item);
+});
+var t=$http.post('JSON/data.json',tempItemList);
+
+if(typeof t=="object")
+    $scope.message="Submitted" ; 
+else
+   $scope.message="Error"; 
+};
+}); 
+   
+</script>
+</body>
+</html>
+

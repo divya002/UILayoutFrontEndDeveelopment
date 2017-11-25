@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="public/w3.css">
+<link rel="stylesheet" href="public/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="public/angular.min.js"></script>
+<body  style="background-color:#B5CDB8" >
+  <div class="maindiv w3-round-xlarge " ng-app="myDeploy" ng-controller="DeployCtrl">  
+      <h3>Deployment Architecture Configuration </h3>
+    
+          <p class="w3-panel w3-dark-gray w3-round-large">Home > Deployment Architecture > Configuration</p>
+      
+       
+      <div class="secdiv w3-round-xlarge" ng-include="currentLink">
+       
+      </div>
+      <br>
+<button class="w3-blue w3-round-large w3-opacity" style="margin-left:600px" ng-click="continue()">Continue</button>
+      
+    </div>
+    
+    <script>
+var app = angular.module('myDeploy', []);   
+        
+app.controller('DeployCtrl', function ($scope) {
+    $scope.count=0;
+    $scope.currentLink='views/env.html';
+$scope.continue=function()
+{
+    
+    link=['views/env.html','views/plan.html','views/host.html','views/map.html','views/configure.html','views/summary.html'];
+    $scope.count++;
+    if($scope.count<6)
+    $scope.currentLink=link[$scope.count];
+    else
+    $scope.currentLink=link[5];    
+   
+}
+}); 
+   
+</script>
+</body>
+</html>
+
