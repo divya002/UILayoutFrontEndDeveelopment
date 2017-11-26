@@ -8,7 +8,16 @@
                 "lookUpValue": "https://52.74.30.158/bigdecisions/index.html",
                 "lookupDescription": "Base URI for Bigdecisions UI",
                 "isActive": true,
-                "cars" : ["Saab", "Volvo", "BMW"]
+                "cars" : [{
+                "_id": 2556,
+                "_class": "com.cognizant.bigdecisions.common.model.LookupMaster",
+                "lookupId": 2556,
+                "lookupType": "bigdecision_base_uri",
+                "lookupName": "bigdecisions.ui.url",
+                "lookUpValue": "https://52.74.30.158/bigdecisions/index.html",
+                "lookupDescription": "Base URI for Bigdecisions UI",
+                "isActive": true,
+                "cars" : ["boleropp", "Volvo", "audi"]
 },
 
 {
@@ -21,5 +30,18 @@
                 "lookupDescription": "SAML Admin user",
                 "isActive": true,
                 "cars" : ["bolero", "Volvo", "audi"]
+}]
+},
+
+{
+                "_id": 10001,
+                "_class": "com.cognizant.bigdecisions.common.model.LookupMaster",
+                "lookupId": 10001,
+                "lookupType": "saml_config_details",
+                "lookupName": "saml.admin.user",
+                "lookUpValue": "admin",
+                "lookupDescription": "SAML Admin user",
+                "isActive": true,
+                "cars" : ["bolero", "Volvio", "audi"]
 }
 ]

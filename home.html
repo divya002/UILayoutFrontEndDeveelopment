@@ -27,7 +27,7 @@
 <input class="w3-round-large" type="text"  ng-model="x.lookUpValue" autofocus />
 
 </td>
-<td>{{ x.cars[1] }}</td>
+<td>{{ x.cars[0].cars[1] }}</td>
 </tr>
 </table>
      <span>{{message}}</span>
@@ -43,7 +43,7 @@ var app = angular.module('myApp', []);
 app.controller('TableAccessCtrl', function ($scope, $http) {
 $http.get('JSON/data.json').then(function(response) {
         $scope.tableContent= response.data;
-     console.log($scope.tableContent[0].cars[2]);
+     console.log($scope.tableContent[0].cars[0]);
 });
 
 $scope.editItem = function (x) {
