@@ -1,75 +1,153 @@
-
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/w3.css">
+<link rel="stylesheet" href="public/main.css">
+<link rel="stylesheet" href="public/bootstrap.min.css">
+<link rel="stylesheet" href="public/font-awesome.min.css">
 <script src="public/angular.min.js"></script>
+<script src="public/jquery.min.js"></script>
+<script src="public/bootstrap.min.js"></script>
+<script src="public/ngClickCopy.js"></script>
+<!--<script src="controller/deployController.js"></script>-->
+
 <body style="background-color:#B5CDB8">
-<div class="w3-round-xxlarge" ng-app="myApp" ng-controller="TableAccessCtrl">
-<h1><center w3-blue>LookUp Generator</center></h1> 
-    <br>
-    <br>
-<center>
-<table class="w3-table-all w3-round-large">
-<tr class="w3-pale-green">
-<th>LookupId</th>
-<th>LookupType</th>
-<th>LookupName</th>
-<th>LookUpValue</th>
-<th>LookupDescription</th>
-</tr>
-<tr class="w3-pale-blue" ng-repeat="x in tableContent">
-<td>{{ x.lookupId }}</td>
-<td>{{ x.lookupType }}</td>
-<td>{{ x.lookupName }}</td>
-<td>
-<!--//<span ng-hide="x.editing" ng-dblclick="editItem(x)">{{x.lookUpValue}}</span>-->
-<input class="w3-round-large" type="text"  ng-model="x.lookUpValue" autofocus />
+    <div class="maindiv w3-round-xlarge" ng-app="myApp" ng-controller="TableAccessCtrl">
 
-</td>
-<td>{{ x.cars[0].cars[1] }}</td>
-</tr>
-</table>
-     <span>{{message}}</span>
-</center>
+        <h1>
+            <center w3-blue>LookUp Generator</center>
+        </h1>
+        <br>
+        <br>
+        <div>
+            <center>
 
-    <br>
-   
-<center><button class="w3-pale-red w3-round-large" ng-click="resubmit()">Submit!</button></center>
-    
-</div>
-<script>
-var app = angular.module('myApp', []);   
-app.controller('TableAccessCtrl', function ($scope, $http) {
-$http.get('JSON/data.json').then(function(response) {
-        $scope.tableContent= response.data;
-     console.log($scope.tableContent[0].cars[0]);
-});
+                <table class="w3-table-all w3-round-large">
+                    <tr class="w3-pale-green">
+                        <th>LookupId</th>
+                        <th>LookupType</th>
+                        <th>LookupName</th>
+                        <th>LookUpValue</th>
+                        <th>LookupDescription</th>
+                    </tr>
+                    <tr class="w3-pale-blue" ng-repeat="m in homeTable">
+                        <td>{{ m.lookupId }}</td>
+                        <td>{{ m.lookupType }}</td>
+                        <td>{{ m.lookupName }}</td>
+                        <td>
+                            <!--//<span ng-hide="x.editing" ng-dblclick="editItem(x)">{{x.lookUpValue}}</span>-->
+                            <input class="w3-round-large" type="text" ng-model="m.lookUpValue" autofocus />
 
-$scope.editItem = function (x) {
-        x.editing = true;
-    };
+                        </td>
+                        <td>{{ m.lookupDescription }}</td>
+                    </tr>
+                </table>
 
-$scope.doneEditing = function (x) {
-        x.editing = false;
-    };
+            </center>
+        </div>
+        <br>
+        <div class="container">
+            <!--            <button class="w3-blue w3-round-large w3-opacity w3-small" ng-click="back()">Back</button>-->
 
-$scope.resubmit= function() {   
-    
-var tempItemList = [];
-angular.forEach($scope.tableContent,function(item,index){
-tempItemList.push(item);
-});
-var t=$http.post('JSON/data.json',tempItemList);
+            <button type="button" style="margin-left: 60%" class="w3-blue w3-round-large w3-opacity w3-large" data-toggle="modal" data-target="#myModal" ng-click="resubmit()">Generate</button>
 
-if(typeof t=="object")
-    $scope.message="Submitted" ; 
-else
-   $scope.message="Error"; 
-};
-}); 
-   
-</script>
+            <!--        <center><button type="submit" class="w3-pale-red w3-round-large" ng-click="generate">Genearate!</button></center>-->
+
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content w3-pale-blue">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Summary</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <!--
+                            <center>
+
+                                <table class="w3-table-all w3-round-large">
+                                    <tr class="w3-pale-green">
+                                        <th>LookupId</th>
+                                        <th>LookupType</th>
+                                        <th>LookupName</th>
+                                        <th>LookUpValue</th>
+                                        <th>LookupDescription</th>
+                                    </tr>
+                                    <tr class="w3-pale-blue" ng-repeat="s in summary">
+                                        <td>{{ s.lookupId }}</td>
+                                        <td>{{ s.lookupType }}</td>
+                                        <td>{{ s.lookupName }}</td>
+                                        <td>{{s.lookUpValue}}</td>
+                                        <td>{{ s.lookupDescription }}</td>
+                                    </tr>
+                                </table>
+
+                            </center>
+-->
+                            {{summary}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="w3-pale-red w3-round-large w3-opacity w3-small" data-dismiss="modal">Close</button>
+                            <button type="button" class="w3-pale-green w3-round-large w3-opacity w3-small" ng-click-copy="'{{summary}}'">Copy to Clipboard</button>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="Slogan" style="z-index: -1; position: fixed; font-size: 20pt; color: #999999; text-align: justify; margin-left: 6px; margin-right: 6px;"></div>
+    </div>
+
+
+
+    <script>
+        var app = angular.module('myApp', ['ngClickCopy']);
+
+        app.controller('TableAccessCtrl', function($scope, $http) {
+            $http.get('http://localhost:8080/bigdecisions/config/lookup/template').then(function(response) {
+                $scope.tableContent = response.data;
+                $scope.homeTable = $scope.tableContent.result;
+
+            });
+
+            $scope.editItem = function(x) {
+                x.editing = true;
+            };
+
+            $scope.doneEditing = function(x) {
+                x.editing = false;
+            };
+
+            $scope.resubmit = function() {
+
+                var tempItemList = [];
+                angular.forEach($scope.tableContent, function(item, index) {
+                    tempItemList.push(item);
+                });
+                var sendData = tempItemList[0];
+
+                $http.post('http://localhost:8080/bigdecisions/config/lookup/generate', sendData).then(
+                    function(response) {
+
+
+                        $scope.summary = response.data.result;
+
+                    },
+                    function(response) {
+
+                        console.log(response.data);
+                    }
+
+                );
+            };
+        });
+    </script>
 </body>
-</html>
 
+</html>

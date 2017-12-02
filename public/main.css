@@ -1,23 +1,40 @@
-
 .maindiv {
-    background:#D6DBDD;
+    background: #D6DBDD;
     margin: auto;
-    width: 60%;
-    border: 1px ;
+    width: 65%;
+    border: 1px;
     padding: 20px;
 }
+
 .secdiv {
-    background:#B8E5F7;
+    background: #B8E5F7;
     margin: 1px;
     width: 100%;
-/*    border: 1px solid #33AFFF;*/
-     padding: 30px;
+    /*    border: 1px solid #33AFFF;*/
+    padding: 30px;
 }
-.space  {font-size:16px; font-style: italic; margin-right:5px;}
 
-.lspace{
-    margin-right:40px;
+.space {
+    font-size: 16px;
+    font-style: italic;
+    margin-right: 25px;
 }
-checkbox{
+
+.lspace {
+    margin-right: 40px;
+}
+
+checkbox {
+    display: inline-block;
+}
+
+hr {
+    width: 40%;
+}
+
+.divider {
+    width: auto;
+    height: auto;
+    margin-left: 550px;
     display: inline-block;
 }

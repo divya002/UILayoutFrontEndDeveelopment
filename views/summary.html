@@ -1,1 +1,83 @@
-summary
+<p class="w3-panel w3-light-blue w3-round-large">Deployment Architecture – Step 5 of 5</p>
+<p>
+    <i class="w3-badge w3-green">1</i><span class="w3-tiny space w3-round-xxlarge">Environment</span>
+    <i class="w3-badge w3-green">2</i><span class="w3-tiny space w3-round-xxlarge">Environment</span>
+    <i class="w3-badge w3-green">3</i><span class="w3-tiny space w3-round-xxlarge">Configure Hosts</span>
+    <!--<i class="w3-badge w3-green">4</i><span class="w3-tiny space w3-round-xxlarge">Map Components</span>-->
+    <i class="w3-badge w3-green">4</i><span class="w3-tiny space w3-round-xxlarge">Configure Software</span>
+    <i class="w3-badge w3-red">5</i><span class="w3-tiny space w3-round-xxlarge">Summary</span>
+</p>
+<p class="w3-panel w3-border-bottom w3-text-gray">Review Summary
+</p>
+
+
+<form id="envform">
+    <br><br>
+    <div class="divider" ng-controller="summaryController">
+        <div class="container">
+            <button class="w3-blue w3-round-large w3-opacity w3-small" ng-click="back()">Back</button>
+            <button type="button" class="w3-blue w3-round-large w3-opacity w3-small" data-toggle="modal" data-target="#myModal" ng-click="generate()">Generate</button>
+
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content w3-pale-blue">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Summary</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="w3-small">Deployment Size: {{summaryData.deploymentSize}}</p>
+                            <p class="w3-small">Environment: {{summaryData.environment}}</p>
+                            <p class="w3-small">Instance Name: {{summaryData.instanceName}}</p>
+                            <br>
+
+                            <table class="w3-table-all w3-small">
+                                <tr class="w3-pale-green">
+                                    <th>HostName</th>
+                                    <th>PortNo</th>
+                                    <th>UserName</th>
+                                    <th>InstanceName</th>
+                                    <th>PrivateIp</th>
+                                    <!--
+                                    <th>BasePath</th>
+                                    <th>LogicalName</th>
+-->
+                                    <!--                <th>Actions</th>-->
+                                </tr>
+                                <tr class="w3-pale-blue" ng-repeat="z in summaryHosts">
+
+                                    <td>{{ z.host.hostName }}</td>
+                                    <td>{{ z.host.portNo }}</td>
+                                    <td>{{ z.host.userName }}</td>
+                                    <td>{{ z.host.instanceName }}</td>
+                                    <td>{{ z.host.privateIp }}</td>
+                                    <!--
+                                    <td>{{ z.host.basePath }}</td>
+                                    <td>{{ z.host.logicalName }}</td>
+-->
+
+
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="w3-pale-red w3-round-large w3-opacity w3-small" data-dismiss="modal" ng-click-copy="'{{copyData}}'">Close &amp; Paste</button>
+                            <button type="button" class="w3-pale-green w3-round-large w3-opacity w3-small" ng-click="copyToClipboard()">Copy to Clipboard</button>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+</form>

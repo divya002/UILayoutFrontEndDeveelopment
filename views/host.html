@@ -1,47 +1,84 @@
-<p class="w3-panel w3-light-blue w3-round-large">Deployment Architecture – Step 3 of 6</p>
+<p class="w3-panel w3-light-blue w3-round-large">Deployment Architecture – Step 3 of 5</p>
 <p>
-<i class="w3-badge w3-green">1</i><span class="w3-tiny space w3-round-xxlarge">Environment</span>
-<i class="w3-badge w3-green">2</i><span class="w3-tiny space w3-round-xxlarge">Environment</span>
-<i class="w3-badge w3-red">3</i><span class="w3-tiny space w3-round-xxlarge">Configure Hosts</span>
-<i class="w3-badge w3-gray">4</i><span class="w3-tiny space w3-round-xxlarge">Map Components</span>
-<i class="w3-badge w3-gray">5</i><span class="w3-tiny space w3-round-xxlarge">Configure Software</span>
-<i class="w3-badge w3-gray">6</i><span class="w3-tiny space w3-round-xxlarge">Summary</span> 
+    <i class="w3-badge w3-green">1</i><span class="w3-tiny space w3-round-xxlarge">Environment</span>
+    <i class="w3-badge w3-green">2</i><span class="w3-tiny space w3-round-xxlarge">Deployment Plan</span>
+    <i class="w3-badge w3-red">3</i><span class="w3-tiny space w3-round-xxlarge">Configure Hosts</span>
+    <i class="w3-badge w3-gray">4</i><span class="w3-tiny space w3-round-xxlarge">Configure Software</span>
+    <i class="w3-badge w3-gray">5</i><span class="w3-tiny space w3-round-xxlarge">Summary</span>
 </p>
 <p class="w3-panel w3-border-bottom w3-text-gray">Configure Hosts
 </p>
 
-          
+
 <form id="envform">
-    <div>
-  <span class="w3-medium ">Deployment Option:</span>
-        <br>
- <select class="w3-round-large w3-small">
-  <option value="Big Decisions Small">Big Decisions Small</option>
-  <option value="Big Decisions Medium">Big Decisions Medium</option>
-  <option value="Big Decisions Large">Big Decisions Large</option> 
-</select>
-  <button class="w3-blue w3-round-large w3-opacity" style="margin-left:480px">Discover</button>  
-        <br>
-        <table class="w3-table-all w3-round-xxlarge w3-small">
-<tr class="w3-pale-green">
-<th>Login Name</th>
-<th>HostName/InstanceId</th>
-<th>Private IP Address</th>
-<th>UserName</th>
-<th>Actions</th>
-</tr>
-<tr class="w3-pale-blue">
-<td>Web Server</td>
-<td><input class="w3-round-large" type="text"  autofocus />
-</td>
-<td><input class="w3-round-large" type="text"  autofocus /></td>
-<td><input class="w3-round-large" type="text"  autofocus /></td>
-<td><input class="w3-round-large" type="text"  autofocus /></td>
-</tr>
-</table>
-        
-        <br>
+    <div ng-controller="hostController">
+        <span class="w3-medium ">Deployment Option:</span>
         <br>
 
+        <span class="w3-small">Big Decisions</span><select class="w3-round-medium w3-small" ng-model="DeploymentOption" ng-options="x for x in ['Small','Medium','Large']">
+   
+</select>
+        <button class="w3-blue w3-round-large w3-opacity" style="margin-left:430px" ng-click="discover()">Discover</button>
+        <br>
+        <br>
+        <table class="w3-table-all w3-small">
+            <tr class="w3-pale-green">
+                <th>HostName</th>
+                <th>PortNo</th>
+                <th>UserName</th>
+                <th>InstanceName</th>
+                <th>PrivateIp</th>
+                <th>BasePath</th>
+                <th>LogicalName</th>
+                <!--                <th>Actions</th>-->
+            </tr>
+            <tr class="w3-pale-blue" ng-repeat="z in mainTable">
+                <!--
+                
+                <td>{{ z.hostName }}</td>
+                <td>{{ z.portNo }}</td>
+                <td>{{ z.userName }}</td>
+                <td>{{ z.instanceName }}</td>
+                <td>{{ z.privateIp }}</td>
+                <td>{{ z.basePath }}</td>
+                <td>{{ z.logicalName }}</td>
+-->
+
+                <!--                <td><input type="checkbox" class="w3-round-large" style="width: 100%" type="text" ng-model="options[$index]" ng-true-value="'{{z}}'" ng-false-value=" "></td>-->
+                <td>
+                    <input style="width:80px" class="w3-round-medium" type="text" ng-model="z.hostName" autofocus />
+                </td>
+                <td>
+                    <input style="width:80px" class="w3-round-medium" type="text" ng-model="z.portNo" autofocus />
+                </td>
+                <td>
+                    <input style="width:90px" class="w3-round-medium" type="text" ng-model="z.userName" autofocus />
+                </td>
+                <td>
+                    <input style="width:120px" class="w3-round-medium" type="text" ng-model="z.instanceName" autofocus />
+                </td>
+                <td>
+                    <input style="width:120px" class="w3-round-medium" type="text" ng-model="z.privateIp" autofocus />
+                </td>
+                <td>
+                    <input style="width:80px" class="w3-round-medium" type="text" ng-model="z.basePath" autofocus />
+                </td>
+                <td>
+                    <input style="width:90px" class="w3-round-medium" type="text" ng-model="z.logicalName" autofocus />
+                </td>
+                <!--
+                 <td>
+                   <button class="w3-round-medium w3-pale-red" ng-click="remove(z)">Delete</button>
+                </td>
+-->
+            </tr>
+        </table>
+
+        <br><br>
+        <div class="divider">
+            <button class="w3-blue w3-round-large w3-opacity" ng-click="back()">Back</button>
+            <button class="w3-blue w3-round-large w3-opacity" ng-click="hostTransfer(); continue()">Continue</button>
+        </div>
+        <br>
     </div>
 </form>

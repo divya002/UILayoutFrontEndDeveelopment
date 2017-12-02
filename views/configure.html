@@ -1,1 +1,39 @@
-configure
+<p class="w3-panel w3-light-blue w3-round-large">Deployment Architecture – Step 4 of 5</p>
+<p>
+    <i class="w3-badge w3-green">1</i><span class="w3-tiny space w3-round-xxlarge">Environment</span>
+    <i class="w3-badge w3-green">2</i><span class="w3-tiny space w3-round-xxlarge">Deployment Plan</span>
+    <i class="w3-badge w3-green">3</i><span class="w3-tiny space w3-round-xxlarge">Configure Hosts</span>
+    <!--<i class="w3-badge w3-green">4</i><span class="w3-tiny space w3-round-xxlarge">Map Components</span>-->
+    <i class="w3-badge w3-red">4</i><span class="w3-tiny space w3-round-xxlarge">Configure Software</span>
+    <i class="w3-badge w3-gray">5</i><span class="w3-tiny space w3-round-xxlarge">Summary</span>
+</p>
+<p class="w3-panel w3-border-bottom w3-text-gray">Configure Software Installation Paths
+</p>
+
+
+<form id="envform">
+    <div ng-controller="configureController">
+        <span class="w3-small">Base Installation Path:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="w3-round-large" type="text" name="BaseInstallationPath
+" ng-model="BaseInstallationPath">
+        <br>
+        <br>
+        <span class="w3-small">Kafka Installation Path
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="w3-round-large" type="text" name="KafkaInstallationPath
+" ng-model="KafkaInstallationPath">
+        <br>
+        <br>
+        <span class="w3-small">Oracle Client Installation Path
+</span>&nbsp;
+        <input class="w3-round-large" type="text" name="OracleClientInstallationPath
+" ng-model="OracleClientInstallationPath">
+
+        <br><br>
+        <div class="divider">
+            <button class="w3-blue w3-round-large w3-opacity" ng-click="back()">Back</button>
+            <button class="w3-blue w3-round-large w3-opacity" ng-click="continue()">Continue</button>
+        </div>
+        <br>
+    </div>
+</form>
